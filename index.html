@@ -1,30 +1,229 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Page Title</title>
-	</head>
-	<body>
-        <h1 class = "color"> Clicker Game</h1>
-		<h4 class = "color"> Your Goal is to Reach One Million Clicks!</h4>
-	</body>
-    <button id="myButton" class="click" onclick="myFunction()"> Click Here!</button>
-</html>
+<style> 
+.header{
+    text-align: center;
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+}
+.color{
+color: rgba(, 0, 0, 0);
+background-color: white;
 
- <br> </br>
+ 
+    font-family: Arial, sans-serif ;
+
+;
+}
+.sh{
+    background-color: white;
+
+    font-family: Arial, sans-serif ;
+
+}
+#butn{
+    font-family: Arial, sans-serif;
+}
+.click{
+    width:3.5cm;
+    height:3.5cm;
+    border-radius:10.5ch;
+    border-width: 8mm;
+    border-color: lightblue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(159, 191, 209);
+    font-size: large;
+    
+    
+    
+}
+.stats{
+    width:5.5cm;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: medium;
+    border-width: 5px;
+    border-color: rgb(33, 33, 161);
+     border-radius: 50ch;
+
+}
+.storeheader{
+    font-family: Arial, sans-serif;
+    
+}
+.store{
+    width:5cm;
+    height:2cm;
+    border-radius:4ch;
+    border-width: 2mm;
+    
+}
+.stat{
+    height: 2ch;
+
+    width: 5ch;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: medium;
+    border-width: 4px;
+    border-color: rgb(186, 186, 233);
+}
+#acs{
+    font-size: xsmall;
+}
+#ac{
+    width: 6.cm;
+}
+</style>
+<script>
+   
+   let cc = 0
+var increment = 0
+let u1 = 1
+let cps = increment
+let av = 0
+let inc = 0
+var up = true
+let p1 = 50
+let aup1 = 200
+let p2 = 100
+let upgrde = 0
+let p3 = 15
+let acu1 = 1250
+
+if ("clickcount" in localStorage) {
+    alert('Game Loaded');
+    updatenumbers()
+    load()
+} else {
+    alert('No Save Detected. Hello!');
+    localStorage.clickcount = 1
+}
+
+
+
+function load(){
+if ("increment" in localStorage) {increment = Number(localStorage.increment) } 
+else {localStorage.increment = increment}
+}
+
+function save(){
+    localStorage.increment = increment
+}
+
+
+
+
+
+
+
+function updatenumbers() {
+    document.getElementById("butn").innerHTML = 'Clicks: ' + cc
+
+document.getElementById("ac").innerHTML = 'Clicks Per Second: ' + cps
+document.getElementById("store").innerHTML = '+1 Per Click: $' + p1 
+document.getElementById("store0").innerHTML = '+3 Per Click: $' + p2 
+document.getElementById("store1").innerHTML = 'Autoclicker: $' + p3 
+document.getElementById("acs").innerHTML = 'Auto  Upgrade: $' + aup1 
+save()
+}
+
+function myFunction() {
+
+localStorage.clickcount = Number(localStorage.clickcount) + u1
+  cc = Number(localStorage.clickcount)
+localStorage.clickcount = cc
+updatenumbers()
+}
+function autostore() {
+    if (
+        cc >= aup1
+    )
+    cc = cc - aup1
+    aup1 = aup1 * 2
+    acu1 = acu1 - 50
+    cps = cps + acu1 / 1000
+    cps = cps / 4
+    
+    
+    
+}
+function storeFunction() {
+if(cc >= p1){
+cc = cc - p1
+u1 = u1 + 1
+p1 = p1 * 3
+updatenumbers()
+}
+}
+function storeFunction1() {
+if(cc >= p2){
+cc = cc - p2
+u1 = u1 + 3
+p2 = p2 * 3
+
+updatenumbers()
+}
+}
+function storeFunction2() {
+    if(cc >= p3){
+cc = cc - p3
+p3 = p3 * 2
+increment = increment + 1
+updatenumbers()
+
+    }
+}
+var value = 0;
+
+
+
+
+
+
+function PerformCalc() {
+  if (up == true ) {
+    cc += increment
+    cps = increment
+  }
   
-    <button class="stats" id="butn">0</button>
-<br> </br>
-<button class="stats" id = "cpc">0</button>
+  updatenumbers()
+  }
+setInterval(PerformCalc, acu1);
+
+</script>
+<body>
+    <head>
+        <title>Clicker</title>
+    </head>
+    <body>
+        <h1 class = "header" > Clicker Game</h1>
+        <h4 class = "color"> Your Goal is to Reach One Million Clicks!</h4>
+        
+    
+
     </body>
+    <br> </br>
+      <button class="stats" id="butn">0</button>
+      <br> </br>
+   <button class="stats" id="ac">0</button>
+     <br> </br>
+    <button id="myButton" class="click" onclick="myFunction()" >Click Here!</button>
+
+
+ 
+
+  
+
+    
+
+
+  
+<h3 class="storeheader">Upgrade Store</h3>
+<br> 
+<h5 class="storeheader">Here you can buy upgrades.</h5>
+ </br>
+<button class="store" id="store1" onclick="storeFunction2()" onclick="">Autoclicker: 200 Clicks</button>
+
+<button class="store" id="store" onclick="storeFunction()">+1 Per Click: 50 Clicks</button>
 <br> </br>
-<button id="ac" class="stats" >0</button>
-<br> </br>  
-<h3 class="color">Upgrade Store</h3>
-<h5 class="color">Here you can buy upgrades.</h5>
-<button id="store1" onclick="storeFunction2()" onclick="">Autoclicker: 200 Clicks</button>
-<br> </br>
-<button id="store" onclick="storeFunction()">+1 Per Click: 50 Clicks</button>
-<br> </br>
-<button id="store0" onclick="storeFunction1()">+3 Per Click: 100 Clicks</button>
-<br> </br>
-<button id="acs" onclick="autostore()"> hello, this is placeholder text</button>
+<button class="store" id="store0" onclick="storeFunction1()">+3 Per Click: 100 Clicks</button>
+
+<button class="store" id="acs" onclick="autostore()"> hello, this is placeholder text</button>
